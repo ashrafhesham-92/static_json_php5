@@ -1,48 +1,81 @@
 <html>
-	<head>
-		<title>Laravel</title>
-		
-		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+<head>
+<title>jQuery add / remove textbox example</title>
 
-		<style>
-			body {
-				margin: 0;
-				padding: 0;
-				width: 100%;
-				height: 100%;
-				color: #B0BEC5;
-				display: table;
-				font-weight: 100;
-				font-family: 'Lato';
-			}
 
-			.container {
-				text-align: center;
-				display: table-cell;
-				vertical-align: middle;
-			}
+<script src="jquery-3.3.1.min.js"></script>
 
-			.content {
-				text-align: center;
-				display: inline-block;
-			}
 
-			.title {
-				font-size: 96px;
-				margin-bottom: 40px;
-			}
+<style type="text/css">
+	div{
+		padding:8px;
+	}
+</style>
 
-			.quote {
-				font-size: 24px;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<div class="content">
-				<div class="title">Laravel 5</div>
-				<div class="quote">{{ Inspiring::quote() }}</div>
-			</div>
-		</div>
-	</body>
+</head>
+
+<body>
+
+<h1>jQuery add / remove textbox example</h1>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    var counter = 2;
+
+    $("#addButton").click(function () {
+
+	if(counter>10){
+            alert("Only 10 textboxes allow");
+            return false;
+	}
+
+	var newTextBoxDiv = $(document.createElement('div'))
+	     .attr("id", 'TextBoxDiv' + counter);
+
+	newTextBoxDiv.after().html('<label>Textbox #'+ counter + ' : </label>' +
+	      '<input type="text" name="textbox' + counter +
+	      '" id="textbox' + counter + '" value="" >');
+
+	newTextBoxDiv.appendTo("#TextBoxesGroup");
+
+
+	counter++;
+     });
+
+     $("#removeButton").click(function () {
+	if(counter==1){
+          alert("No more textbox to remove");
+          return false;
+       }
+
+	counter--;
+
+        $("#TextBoxDiv" + counter).remove();
+
+     });
+
+     $("#getButtonValue").click(function () {
+
+	var msg = '';
+	for(i=1; i<counter; i++){
+   	  msg += "\n Textbox #" + i + " : " + $('#textbox' + i).val();
+	}
+    	  alert(msg);
+     });
+  });
+</script>
+</head><body>
+
+<div id='TextBoxesGroup'>
+	<div id="TextBoxDiv1">
+		<label>Textbox #1 : </label><input type='textbox' id='textbox1' >
+	</div>
+</div>
+<input type='button' value='Add Button' id='addButton'>
+<input type='button' value='Remove Button' id='removeButton'>
+<input type='button' value='Get TextBox Value' id='getButtonValue'>
+
+</body>
 </html>

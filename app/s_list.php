@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class s_list extends Model
 {
     //
+    public $timestamps = false;
 
      protected $table = 'lists';
     

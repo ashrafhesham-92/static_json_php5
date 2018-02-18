@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class row extends Model
 {
+	public $timestamps = false;
+
+
     //
     public function cells(){
     	return $this->hasMany('App\cell');

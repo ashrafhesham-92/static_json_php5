@@ -7,4 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class header extends Model
 {
     //
+    public $timestamps = false;
+
+
 }
