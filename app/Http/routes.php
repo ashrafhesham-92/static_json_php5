@@ -44,11 +44,25 @@ Route::get('/lists/deletecell/{id}', 'cellController@destroy');
 Route::get('/lists/deleteheader/{id}', 'headerController@destroy');
 Route::get('/lists/addcell/{id}', 'cellController@store');
 Route::get('/lists/updatecell/{id}', 'cellController@update');
+Route::get('/lists/updaterow/{id}', 'rowController@update');
+
+
+Route::get('/lists/actions/', 'actionController@show');
+Route::get('/lists/deleteaction/{id}', 'actionController@destroy');
+Route::get('/lists/createaction/', 'actionController@create');
+Route::post('/lists/createaction', 'actionController@store');
+
+
+Route::get('/modules/validations/', 'ml_validationController@show');
+Route::get('/modules/deletevalidation/{id}', 'ml_validationController@destroy');
+Route::get('/modules/createvalidation/', 'ml_validationController@create');
+Route::post('/modules/createvalidation', 'ml_validationController@store');
+
 
 /*Route::get('home', 'HomeController@index');
 
 Route::controllers([
-	'auth' => 'Auth\AuthController',
+11	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
 */

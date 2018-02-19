@@ -65,9 +65,19 @@ class rowController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
 		//
+		$row = \App\row::find($id);
+
+		$action = \App\action::find($request->action);
+
+
+
+		$row->actions()->save($action);
+
+
+		return back()->with('success','cell has been updated');
 	}
 
 	/**

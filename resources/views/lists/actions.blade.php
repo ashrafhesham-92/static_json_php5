@@ -4,15 +4,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Modules Page</title>
+    <title>Actions Page</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
   </head>
   <body>
-    <a href='/static_json_php5/public/modules/view' class="btn btn-warning">Modules</a>
-    <a href='/static_json_php5/public/modules/create' class="btn btn-warning">Create</a>
-    <a href='/static_json_php5/public/modules/validations' class="btn btn-warning">Validations</a>
-    
-    
+    <a href='/static_json_php5/public/lists/view' class="btn btn-warning">Lists</a>
+    <a href='/static_json_php5/public/lists/create' class="btn btn-warning">Create</a>
+    <a href='/static_json_php5/public/lists/actions' class="btn btn-warning">Actions</a>
+     
     <div class="container">
     <br />
     @if (\Session::has('success'))
@@ -20,6 +19,7 @@
         <p>{{ \Session::get('success') }}</p>
       </div><br />
      @endif
+    <a href='/static_json_php5/public/lists/createaction' class="btn btn-warning">Add Action</a>
     <table class="table table-striped">
     <thead>
       <tr>
@@ -29,13 +29,12 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($modules as $module)
+      @foreach($actions as $action)
       <tr>
-        <td>{{$module->id}}</td>
-        <td>{{$module->name}}</td>
-        <td><a href='/static_json_php5/public/modules/edit/{{$module->id}}' class="btn btn-warning">Edit</a></td>
+        <td>{{$action->id}}</td>
+        <td>{{$action->name}}</td>
         <td>
-          <form action='/static_json_php5/public/modules/delete/{{$module->id}}' method="get">
+          <form action='/static_json_php5/public/lists/deleteaction/{{$action->id}}' method="get">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input name="_method" type="hidden" value="DELETE">
             <button class="btn btn-danger" type="submit">Delete</button>

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Create A Module </title>
+    <title>Create A Validation </title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -22,7 +22,7 @@
     
 
     <div class="container">
-      <h2>Create A Module</h2><br />
+      <h2>Create A Validation</h2><br />
       
       
       <form method="post">
@@ -43,7 +43,7 @@
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
 
-            <button type="submit" class="btn btn-success" style="margin-left:38px">Add Module</button>
+            <button type="submit" class="btn btn-success" style="margin-left:38px">Add Validation</button>
 
           </div>
         </div>

@@ -86,9 +86,9 @@ class listController extends Controller {
 		$rows = $list->rows;
 		$headers = $list->headers;
 
-		$list_actions = $list->actions;
+		$actions = action::all();
 
-        return view('lists.edit')->with(compact('list'))->with(compact('rows'))->with( compact('headers'))->with('list_actions');
+        return view('lists.edit')->with(compact('list'))->with(compact('rows'))->with( compact('headers'))->with(compact('actions'));
 	}
 
 	/**
@@ -120,6 +120,11 @@ class listController extends Controller {
 			$header->label = $request->n_head;
 			$list->headers()->save($header);
 
+		}
+
+		if($request->action != NULL){
+			$action = \App\action::find($request->action);
+			$list->actions()->save($action);
 		}
 
 		return redirect('lists/edit/'.$id)->with('success','list has been updated');

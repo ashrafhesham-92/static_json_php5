@@ -8,6 +8,7 @@
   <body>
     <a href='/static_json_php5/public/modules/view' class="btn btn-warning">Modules</a>
     <a href='/static_json_php5/public/modules/create' class="btn btn-warning">Create</a>
+    <a href='/static_json_php5/public/modules/validations' class="btn btn-warning">Validations</a>
     <div class="container">
       <h2>Edit A Module</h2><br  />
       @if ($errors->any())

@@ -25,6 +25,7 @@ class ml_validationController extends Controller {
 	public function create()
 	{
 		//
+		return view('modules.createvalidation');
 	}
 
 	/**
@@ -32,9 +33,19 @@ class ml_validationController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
 		//
+
+		$validation = new \App\ml_field_validation;
+
+		$validation->name = $request->name;
+
+		$validation->save();
+
+		return back()->with('success', 'validation has been created');
+
+
 	}
 
 	/**
@@ -43,9 +54,10 @@ class ml_validationController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show()
 	{
-		//
+		$validations = \App\ml_field_validation::all();
+		return view('modules.validations', compact('validations'));
 	}
 
 	/**
@@ -78,7 +90,13 @@ class ml_validationController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$validation = \App\ml_field_validation::find($id);
+
+		
+
+		$validation->delete();
+
+		return back()->with('success','validation has been removed');
 	}
 
 }

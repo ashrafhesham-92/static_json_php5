@@ -18,6 +18,7 @@
   </head>
   <body><a href='/static_json_php5/public/lists/view' class="btn btn-warning">Lists</a>
     <a href='/static_json_php5/public/lists/create' class="btn btn-warning">Create</a>
+    <a href='/static_json_php5/public/lists/actions' class="btn btn-warning">Actions</a>
 
     <div class="container">
       <h2>Create A List</h2><br />

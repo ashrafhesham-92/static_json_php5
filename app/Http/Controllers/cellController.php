@@ -35,10 +35,12 @@ class cellController extends Controller {
 	public function store($id, Request $request)
 	{
 		$cell = new \App\cell;
+        $action = \App\action::find($request->action);
 
 		$cell->name = $request->name;
 
 		$cell->save();
+		$cell->actions()->save($action);
 
 		$row = \App\row::find($id);
 
@@ -86,7 +88,7 @@ class cellController extends Controller {
 		$cell->save();
 
 
-		return back()->with('success','list has been updated');
+		return back()->with('success','cell has been updated');
 	}
 
 
