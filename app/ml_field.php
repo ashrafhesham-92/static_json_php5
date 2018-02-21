@@ -7,9 +7,9 @@ class ml_field extends Model {
 	//
 	public $timestamps = false;
 
-	public function validation()
+	public function validations()
 	{
-		return $this->belongsTo('App\ml_field_validation');
+		return $this->belongsToMany('App\ml_validation', 'ml_fields_validations', 'field_id', 'validation_id');
 	}
 
 

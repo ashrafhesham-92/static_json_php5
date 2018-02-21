@@ -24,6 +24,13 @@ Route::get('/modules/delete/{id}', 'ModuleController@destroy');
 
 Route::get('/modules/deletefield/{id}', 'ml_fieldController@destroy');
 
+Route::post('/modules/addvalidation/{id}', 'ml_fieldController@add_validation');
+
+ // Route::get('/modules/rmvval/{$field_id}/{$validation_id}', 'ml_fieldController@remove_validation');
+
+
+
+
 Route::post('/modules/create', 'ModuleController@store');
 
 
@@ -59,6 +66,12 @@ Route::get('/modules/createvalidation/', 'ml_validationController@create');
 Route::post('/modules/createvalidation', 'ml_validationController@store');
 
 
+
+
+//testing request validation calss
+Route::get('/test', 'testController@show');
+
+Route::post('/test', 'testController@test');
 /*Route::get('home', 'HomeController@index');
 
 Route::controllers([

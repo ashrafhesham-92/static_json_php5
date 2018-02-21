@@ -62,8 +62,32 @@
 
       @foreach($fields as $field)
       <tr>
-        <td>{{$field->name}}</td>
-        <td>validation:{{$field->validation}}</td>
+        <td><b>{{$field->name}}</b></td>
+        <td>
+        
+
+        @foreach($field->validations as $validation)
+        <td>(
+          {{$validation->name}}
+
+          <b><a href='/static_json_php5/public/modules/rmvval/{{$field->id}}/{{$validation->id}}'></a></b>
+
+        )</td>
+        @endforeach
+        </td>
+        <td>
+          <form method = 'post' action = '/static_json_php5/public/modules/addvalidation/{{$field->id}}'>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <select name = "validation">
+               @foreach($field_validations as $validation)
+                <option value = '{{$validation->id}}' > {{$validation->name}} </option>
+               @endforeach
+              </select>
+              <button type="submit" class="btn btn-success">+</button>
+          </form>
+          
+       
+        </td>
           <form action='/static_json_php5/public/modules/deletefield/{{$field->id}}' method="get">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input name="_method" type="hidden" value="DELETE">

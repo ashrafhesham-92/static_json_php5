@@ -89,7 +89,7 @@
 
             <form method = 'get' action = '/static_json_php5/public/lists/updateheader/{{$header->id}}'>
               <input type="text" class="" name="n_head">
-              <button type="submit" class="btn btn-success" style="margin-left:38px">change value</button>
+              <button type="submit" class="" style="margin-left:38px">change value</button>
             </form>
 
             <a href='/static_json_php5/public/lists/deleteheader/{{$header->id}}' class="btn btn-danger">Delete</a>
@@ -145,7 +145,7 @@
             </p>
             <form method = 'get' action = '/static_json_php5/public/lists/updatecell/{{$cell->id}}'>
               <input type="text" class="" name="name">
-              <button type="submit" class="btn btn-success" style="margin-left:38px">change value</button>
+              <button type="submit" class="" style="margin-left:38px">change value</button>
             </form>
 
             <a href='/static_json_php5/public/lists/deletecell/{{$cell->id}}' class="btn btn-warning ">Delete</a>

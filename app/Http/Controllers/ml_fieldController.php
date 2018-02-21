@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Module;
 
 use App\ml_field;
-use App\ml_field_validation;
+use App\ml_validation;
 
 class ml_fieldController extends Controller {
 
@@ -21,6 +21,32 @@ class ml_fieldController extends Controller {
 	public function index()
 	{
 		//
+	}
+
+	public function remove_validation($field_id, $validation_id)//removes a validation from a field
+	{
+		//
+		return 'loooool';
+		$field = ml_field::find($field_id);
+		
+		$validation = ml_validation::find($validation_id);
+
+		$field->validations()->newPivotStatement()->where($field->name, $validation->name)->delete();
+
+		// $field->validations()->save($validation);
+
+		return back();
+	}
+
+	public function add_validation($id, Request $request)//removes a validation from a field
+	{
+		
+		$field = ml_field::find($id);
+		$validation = ml_validation::find($request->validation);
+
+		$field->validations()->save($validation);
+
+		return back();
 	}
 
 	/**

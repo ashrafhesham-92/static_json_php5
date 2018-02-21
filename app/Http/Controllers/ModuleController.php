@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Module;
 
 use App\ml_field;
-use App\ml_field_validation;
+use App\ml_validation;
 
 class ModuleController extends Controller {
 
@@ -50,7 +50,7 @@ class ModuleController extends Controller {
 		
 	   $module_name = $request->name;
 	   $ml_field_name = $request->field;
-	   $ml_field_validation_id = $request->validation;
+	   $ml_validation_id = $request->validation;
 
        $module = new Module;
        
@@ -83,7 +83,7 @@ class ModuleController extends Controller {
 		//
 		$module = Module::find( $id);
 		$fields = $module->fields;
-		$field_validations = ml_field_validation::all();
+		$field_validations = ml_validation::all();
 
         return view('modules.edit')->with(compact('field_validations'))->with(compact('module'))->with( compact('fields'));
 	}
@@ -99,7 +99,7 @@ class ModuleController extends Controller {
 
 		$module = Module::find($id);
 
-		$validation = ml_field_validation::find($request->validation);
+		$validation = ml_validation::find($request->validation);
 		
 
 		$module->name = $request->module_name;		
@@ -111,7 +111,8 @@ class ModuleController extends Controller {
 
 			$module->fields()->save($field);
 
-			$validation->fields()->save($field);
+			// return $validation;
+			$field->validations()->save($validation);
 
 		}
 

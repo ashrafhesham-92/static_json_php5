@@ -1,11 +1,17 @@
-<?php namespace App\Http\Controllers;
+<?php 
+
+namespace App\Http\Controllers;
+
+
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class ml_validationController extends Controller {
+use App\library\RequestValidation;
+
+class testController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -25,7 +31,6 @@ class ml_validationController extends Controller {
 	public function create()
 	{
 		//
-		return view('modules.createvalidation');
 	}
 
 	/**
@@ -33,19 +38,9 @@ class ml_validationController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public function store()
 	{
 		//
-
-		$validation = new \App\ml_validation;
-
-		$validation->name = $request->name;
-
-		$validation->save();
-
-		return back()->with('success', 'validation has been created');
-
-
 	}
 
 	/**
@@ -56,8 +51,9 @@ class ml_validationController extends Controller {
 	 */
 	public function show()
 	{
-		$validations = \App\ml_validation::all();
-		return view('modules.validations', compact('validations'));
+		//
+
+		return view('test');
 	}
 
 	/**
@@ -90,13 +86,16 @@ class ml_validationController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$validation = \App\ml_validation::find($id);
+		//
+	}
 
+	public function test(Request $request){
+// dd($request->hasFile('file'));
+		$validation = new \App\library\RequestValidation($request);
 		
+		return $validation->validate();
 
-		$validation->delete();
-
-		return back()->with('success','validation has been removed');
+		//return array_keys($request->all());
 	}
 
 }
