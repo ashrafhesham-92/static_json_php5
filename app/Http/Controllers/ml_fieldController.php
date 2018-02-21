@@ -26,12 +26,12 @@ class ml_fieldController extends Controller {
 	public function remove_validation($field_id, $validation_id)//removes a validation from a field
 	{
 		//
-		return 'loooool';
+		
 		$field = ml_field::find($field_id);
 		
 		$validation = ml_validation::find($validation_id);
 
-		$field->validations()->newPivotStatement()->where($field->name, $validation->name)->delete();
+		$field->validations()->detach($validation->id);
 
 		// $field->validations()->save($validation);
 

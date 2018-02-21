@@ -99,7 +99,6 @@ class ModuleController extends Controller {
 
 		$module = Module::find($id);
 
-		$validation = ml_validation::find($request->validation);
 		
 
 		$module->name = $request->module_name;		
@@ -112,7 +111,10 @@ class ModuleController extends Controller {
 			$module->fields()->save($field);
 
 			// return $validation;
-			$field->validations()->save($validation);
+			if($request->validation != NULL){
+				$validation = ml_validation::find($request->validation);
+				$field->validations()->save($validation);
+			}
 
 		}
 

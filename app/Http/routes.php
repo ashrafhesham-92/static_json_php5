@@ -26,7 +26,7 @@ Route::get('/modules/deletefield/{id}', 'ml_fieldController@destroy');
 
 Route::post('/modules/addvalidation/{id}', 'ml_fieldController@add_validation');
 
- // Route::get('/modules/rmvval/{$field_id}/{$validation_id}', 'ml_fieldController@remove_validation');
+  Route::get('/modules/rmvval/{field_id}/{validation_id}', 'ml_fieldController@remove_validation');
 
 
 

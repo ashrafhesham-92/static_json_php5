@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Edit Modules </title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+
   </head>
   <body>
     <a href='/static_json_php5/public/modules/view' class="btn btn-warning">Modules</a>
@@ -42,6 +43,7 @@
             <input type="text" class="form-control" name="field">
 
             <select name = "validation">
+               <option value = '' ></option>
                @foreach($field_validations as $validation)
                 <option value = '{{$validation->id}}' > {{$validation->name}} </option>
                @endforeach
@@ -70,7 +72,7 @@
         <td>(
           {{$validation->name}}
 
-          <b><a href='/static_json_php5/public/modules/rmvval/{{$field->id}}/{{$validation->id}}'></a></b>
+          <b><a href='/static_json_php5/public/modules/rmvval/{{$field->id}}/{{$validation->id}}'>x</a></b>
 
         )</td>
         @endforeach
