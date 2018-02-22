@@ -18,13 +18,12 @@
   </head>
   <body>
 
-    <a href='/static_json_php5/public/modules/view' class="btn btn-warning">Modules</a>
-    <a href='/static_json_php5/public/modules/create' class="btn btn-warning">Create</a>
-
+ <a href='/static_json_php5/public/modules/view/{{$module->application_id}}' class="btn btn-warning">Modules</a>
+    <a href='/static_json_php5/public/modules/create/{{$module->application_id}}' class="btn btn-warning">Create A Module</a>
     <a href='/static_json_php5/public/lists/actions' class="btn btn-warning">Actions</a>
 
     <div class="container">
-      <h2>Create A List For {{$module->name}} Module</h2><br />
+      <h2>Create A List For <a href='/static_json_php5/public/lists/view/{{$module->id}}'>{{$module->name}}</a> Module</h2><br />
       
       
       <form method="post" action ="/static_json_php5/public/lists/create">

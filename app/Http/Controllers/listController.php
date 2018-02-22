@@ -36,8 +36,9 @@ class listController extends Controller {
 	public function create($id)
 	{
 		//wit
-
 		$module = \App\Module::find($id);
+
+		
 		return view('lists.create', compact('module'));
 
 	}
@@ -102,8 +103,13 @@ class listController extends Controller {
 	public function show($id)
 	{
 		$module = \App\Module::find($id);
+
+		$app = \App\application::where('id', $module->application_id)->first();
+		$app_id = $app->id;
+
+		
 		$lists = $module->lists;
-		return view('lists.view', compact('lists'), compact('module'));
+		return view('lists.view', compact('lists'), compact('module'))->with('app_id');
 	}
 
 	/**
@@ -199,7 +205,7 @@ class listController extends Controller {
 
 		$list->delete();
 
-		return redirect('lists/view')->with('success','list has been removed');
+		return back()->with('success','list has been removed');
 	}
 
 }

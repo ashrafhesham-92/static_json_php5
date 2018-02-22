@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
   </head>
   <body>
-    <a href='/static_json_php5/public/modules/view' class="btn btn-warning">Modules</a>
-    <a href='/static_json_php5/public/modules/create' class="btn btn-warning">Create A Module</a>
+    <a href='/static_json_php5/public/apps/view' class="btn btn-warning">Apps</a>
+    <a href='/static_json_php5/public/apps/create' class="btn btn-warning">Create An App</a>
+    <a href='/static_json_php5/public/modules/create/<?php echo e($app->id); ?>' class="btn btn-warning">Create Module</a>
+    
     <a href='/static_json_php5/public/modules/validations' class="btn btn-warning">Validations</a>
     
     
@@ -25,7 +27,7 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th colspan="2">Action</th>
+        
       </tr>
     </thead>
     <tbody>
@@ -33,21 +35,11 @@
       <tr>
         <td><?php echo e($module->id); ?></td>
         <td><?php echo e($module->name); ?></td>
-
-
         <td><a href='/static_json_php5/public/modules/edit/<?php echo e($module->id); ?>' class="btn btn-warning">Edit</a></td>
-        <td>
-
-
         <td><a href='/static_json_php5/public/lists/view/<?php echo e($module->id); ?>' class="btn btn-success">Lists</a></td>
-        <td>
 
-          <form action='/static_json_php5/public/modules/delete/<?php echo e($module->id); ?>' method="get">
-            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
-            <input name="_method" type="hidden" value="DELETE">
-            <button class="btn btn-danger" type="submit">Delete</button>
-          </form>
-        </td>
+        <td><a href='/static_json_php5/public/modules/delete/<?php echo e($module->id); ?>' class="btn btn-danger">delete</a></td>
+        
       </tr>
       <?php endforeach; ?>
     </tbody>

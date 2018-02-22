@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
   </head>
   <body>
-    <a href='/static_json_php5/public/modules/view' class="btn btn-warning">Modules</a>
-    <a href='/static_json_php5/public/modules/create' class="btn btn-warning">Create A Module</a>
+     
+    <a href='/static_json_php5/public/lists/create/{{$list->module_id}}' class="btn btn-warning">Create A List</a>
     <a href='/static_json_php5/public/lists/actions' class="btn btn-warning">Actions</a>
     <div class="container">
-      <h2>Edit A List</h2><br  />
+      <h2> <a href='/static_json_php5/public/lists/view/{{$list->module_id}}'>Go To Module</a> </h2><br />
+
       @if ($errors->any())
       <div class="alert alert-danger">
           <ul>

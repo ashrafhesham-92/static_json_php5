@@ -29,12 +29,12 @@ class ModuleController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($id)
 	{
-		//
+		$app = \App\application::find($id);
 		//$ml_field_validation = ml_field_validation::all();
 		//return view('modules.create', compact('ml_field_validation'));
-		return view('modules.create');
+		return view('modules.create', compact('app'));
 	}
 
 	/**
@@ -42,21 +42,21 @@ class ModuleController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public function store(Request $request, $id)
 	{
 		//
 
 
+	   $app = \App\application::find($id);
 		
 	   $module_name = $request->name;
-	   $ml_field_name = $request->field;
-	   $ml_validation_id = $request->validation;
-
+	   
        $module = new Module;
        
        $module->name = $module_name;
        $module->save();
- 	   
+ 	   $app->modules()->save($module);
+
        return back()->with('success', 'module has been created');;
 	}
 
@@ -66,10 +66,14 @@ class ModuleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show()
+	public function show($id)
 	{
-		$modules = module::all();
-		return view('modules.view', compact('modules'));
+		$app = \App\application::find($id);
+		$app_id = $app->id;
+		$modules = $app->modules;	
+		
+		// $modules = \App\Module::find($id);
+		return view('modules.view', compact('modules'), compact('app'));
 	}
 
 	/**
@@ -134,7 +138,7 @@ class ModuleController extends Controller {
 		$module = Module::find($id);
 		$module->delete();
 
-		return redirect('modules/view')->with('success','Module has been removed');
+		return back()->with('success','Module has been removed');
 	}
 
 }

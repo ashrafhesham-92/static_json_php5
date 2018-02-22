@@ -4,14 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Actions Page</title>
+    <title>Apps Page</title>
     <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
   </head>
   <body>
     <a href='/static_json_php5/public/apps/view' class="btn btn-warning">Apps</a>
     <a href='/static_json_php5/public/apps/create' class="btn btn-warning">Create An App</a>
     
-     
+     <p align = 'center'><b>Apps</b></p>
+    
     <div class="container">
     <br />
     <?php if(\Session::has('success')): ?>
@@ -19,22 +20,30 @@
         <p><?php echo e(\Session::get('success')); ?></p>
       </div><br />
      <?php endif; ?>
-    <a href='/static_json_php5/public/modules/createvalidation' class="btn btn-warning">Add Validation</a>
     <table class="table table-striped">
     <thead>
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th colspan="2">Action</th>
+      
       </tr>
     </thead>
     <tbody>
-      <?php foreach($validations as $validation): ?>
+
+      <?php foreach($apps as $app): ?>
       <tr>
-        <td><?php echo e($validation->id); ?></td>
-        <td><?php echo e($validation->name); ?></td>
+        <td><?php echo e($app->id); ?></td>
+        <td><?php echo e($app->name); ?></td>
+
+
+        <td><a href='/static_json_php5/public/apps/edit/<?php echo e($app->id); ?>' class="btn btn-warning">Edit</a></td>
         <td>
-          <form action='/static_json_php5/public/modules/deletevalidation/<?php echo e($validation->id); ?>' method="get">
+
+
+        <td><a href='/static_json_php5/public/modules/view/<?php echo e($app->id); ?>' class="btn btn-success">Modules</a></td>
+        <td>
+
+          <form action='/static_json_php5/public/apps/delete/<?php echo e($app->id); ?>' method="get">
             <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
             <input name="_method" type="hidden" value="DELETE">
             <button class="btn btn-danger" type="submit">Delete</button>

@@ -14,8 +14,8 @@
 Route::get('/', 'WelcomeController@index');
 
 //modules
-Route::get('/modules/create', 'ModuleController@create');
-Route::get('/modules/view', 'ModuleController@show');
+Route::get('/modules/create/{id}', 'ModuleController@create');
+Route::get('/modules/view/{id}', 'ModuleController@show');
 
 Route::get('/modules/edit/{id}', 'ModuleController@edit');
 Route::get('/modules/update/{id}', 'ModuleController@update');
@@ -31,7 +31,7 @@ Route::post('/modules/addvalidation/{id}', 'ml_fieldController@add_validation');
 
 
 
-Route::post('/modules/create', 'ModuleController@store');
+Route::post('/modules/create/{id}', 'ModuleController@store');
 
 
 //lists
@@ -70,6 +70,17 @@ Route::get('/modules/deletevalidation/{id}', 'ml_validationController@destroy');
 Route::get('/modules/createvalidation/', 'ml_validationController@create');
 Route::post('/modules/createvalidation', 'ml_validationController@store');
 
+
+
+
+
+Route::get('/apps/view', 'applicationController@show');
+Route::get('/apps/create', 'applicationController@create');
+
+Route::get('/apps/edit/{id}', 'applicationController@edit');
+Route::get('/apps/update/{id}', 'applicationController@update');
+Route::post('/apps/create', 'applicationController@store');
+Route::get('/apps/delete/{id}', 'applicationController@destroy');
 
 
 

@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
   </head>
   <body>
-    <a href='/static_json_php5/public/modules/view' class="btn btn-warning">Modules</a>
-    <a href='/static_json_php5/public/modules/create' class="btn btn-warning">Create A Module</a>
-    <a href='/static_json_php5/public/modules/validations' class="btn btn-warning">Validations</a>
+    <a href='/static_json_php5/public/apps/view' class="btn btn-warning">Apps</a>
+    <a href='/static_json_php5/public/apps/create' class="btn btn-warning">Create An App</a>
     
      
     <div class="container">

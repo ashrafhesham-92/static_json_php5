@@ -9,12 +9,12 @@
   </head>
   <body>
     
-      <a href='/static_json_php5/public/modules/view' class="btn btn-warning">Modules</a>
-    <a href='/static_json_php5/public/modules/create' class="btn btn-warning">Create A Module</a>
-      <a href='/static_json_php5/public/lists/actions' class="btn btn-warning">Actions</a>
+      <a href='/static_json_php5/public/modules/view/{{$module->application_id}}' class="btn btn-warning">Modules</a>
+    <a href='/static_json_php5/public/modules/create/{{$module->application_id}}' class="btn btn-warning">Create A Module</a>
+    <a href='/static_json_php5/public/lists/actions' class="btn btn-warning">Actions</a>
 
-      <b>Lists in {{$module->name}}</b>
-    
+      <b>Lists in <a href='/static_json_php5/public/modules/edit/{{$module->id}}'>{{$module->name}}</a></b>
+    <p align = "center"><a href='/static_json_php5/public/lists/create/{{$module->id}}' class="btn btn-warning">Create A List</a></p>
     <div class="container">
     <br />
     @if (\Session::has('success'))
