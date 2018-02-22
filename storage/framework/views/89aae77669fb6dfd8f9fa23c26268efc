@@ -4,21 +4,22 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Lists Page</title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <title>Actions Page</title>
+    <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
   </head>
   <body>
     <a href='/static_json_php5/public/lists/view' class="btn btn-warning">Lists</a>
     <a href='/static_json_php5/public/lists/create' class="btn btn-warning">Create</a>
     <a href='/static_json_php5/public/lists/actions' class="btn btn-warning">Actions</a>
-    
+     
     <div class="container">
     <br />
-    @if (\Session::has('success'))
+    <?php if(\Session::has('success')): ?>
       <div class="alert alert-success">
-        <p>{{ \Session::get('success') }}</p>
+        <p><?php echo e(\Session::get('success')); ?></p>
       </div><br />
-     @endif
+     <?php endif; ?>
+    <a href='/static_json_php5/public/lists/createaction' class="btn btn-warning">Add Action</a>
     <table class="table table-striped">
     <thead>
       <tr>
@@ -28,23 +29,19 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($lists as $list)
+      <?php foreach($actions as $action): ?>
       <tr>
-        <td>{{$list->id}}</td>
-        <td>{{$list->name}}</td>
-        <td><a href='/static_json_php5/public/lists/edit/{{$list->id}}' class="btn btn-warning">Edit</a></td>
+        <td><?php echo e($action->id); ?></td>
+        <td><?php echo e($action->name); ?></td>
         <td>
-          <form action='/static_json_php5/public/lists/delete/{{$list->id}}' method="get">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <form action='/static_json_php5/public/lists/deleteaction/<?php echo e($action->id); ?>' method="get">
+            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
             <input name="_method" type="hidden" value="DELETE">
             <button class="btn btn-danger" type="submit">Delete</button>
           </form>
-
-          <a href='/static_json_php5/public/lists/getjson/{{$list->id}}' class="btn btn-success">get json</a></td>
-
         </td>
       </tr>
-      @endforeach
+      <?php endforeach; ?>
     </tbody>
   </table>
   </div>

@@ -87,6 +87,12 @@ class cellController extends Controller {
 
 		$cell->save();
 
+		if($request->action != NULL){
+			$action = \App\action::find($request->action);
+
+			$cell->actions()->save($action);
+		}
+
 
 		return back()->with('success','cell has been updated');
 	}

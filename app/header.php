@@ -10,4 +10,10 @@ class header extends Model
     public $timestamps = false;
 
 
+    public function cells()
+	{
+		return $this->hasMany('App\cell', 'header_id');
+	}
+
+
 }

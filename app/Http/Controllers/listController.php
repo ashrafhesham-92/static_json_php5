@@ -40,6 +40,33 @@ class listController extends Controller {
 
 	}
 
+
+	public function generate_json($id){
+
+		$list = \App\s_list::find($id);
+        
+
+            $m_list['headers'] = $list->headers;
+            
+            $m_list['rows']  = $list->rows;
+            
+            
+            foreach ($m_list['rows'] as $row) {
+                $row['cells'] = $row->cells;
+                $row['actions'] = $row->actions;
+
+                foreach ($row['cells'] as $cell) {
+                    $cell['actions'] = $cell->actions;
+                }
+
+            }
+
+            $m_list['actions'] = $list->actions;
+            
+        return json_encode($m_list);
+
+	}
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -81,6 +108,8 @@ class listController extends Controller {
 	 */
 	public function edit($id)
 	{
+
+		// return 'lel';
 		//
 		$list = s_list::find( $id);
 		$rows = $list->rows;
@@ -88,7 +117,7 @@ class listController extends Controller {
 
 		$actions = action::all();
 
-        return view('lists.edit')->with(compact('list'))->with(compact('rows'))->with( compact('headers'))->with(compact('actions'));
+        return view('lists\edit')->with(compact('list'))->with(compact('rows'))->with( compact('headers'))->with(compact('actions'));
 	}
 
 	/**
@@ -108,17 +137,33 @@ class listController extends Controller {
 
 		if($request->newrow != NULL){
 			$row = new row;
-
 			$list->rows()->save($row);
 
+			foreach($list->headers as $header){
+				$cell = new \App\cell;
+				$cell->save();
+				$row->cells()->save($cell);
+				$header->cells()->save($cell);
+	
+			}
 		}
 
 
 		if($request->n_head != NULL){
+			
 			$header = new header;
 			$header->name = $request->n_head;
 			$header->label = $request->n_head;
 			$list->headers()->save($header);
+
+
+			foreach($list->rows as $row){
+				$cell = new \App\cell;
+				$cell->save();
+				$row->cells()->save($cell);
+				$header->cells()->save($cell);
+	
+			}
 
 		}
 

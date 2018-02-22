@@ -38,6 +38,9 @@ Route::post('/modules/create', 'ModuleController@store');
 Route::get('/lists/create', 'listController@create');
 Route::get('/lists/view', 'listController@show');
 
+Route::get('/lists/getjson/{id}', 'listController@generate_json');
+
+
 Route::post('/lists/create', 'listController@store');
 
 

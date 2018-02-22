@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <title>Lists Page</title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
   </head>
   <body>
     <a href='/static_json_php5/public/lists/view' class="btn btn-warning">Lists</a>
@@ -14,11 +14,11 @@
     
     <div class="container">
     <br />
-    @if (\Session::has('success'))
+    <?php if(\Session::has('success')): ?>
       <div class="alert alert-success">
-        <p>{{ \Session::get('success') }}</p>
+        <p><?php echo e(\Session::get('success')); ?></p>
       </div><br />
-     @endif
+     <?php endif; ?>
     <table class="table table-striped">
     <thead>
       <tr>
@@ -28,23 +28,23 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($lists as $list)
+      <?php foreach($lists as $list): ?>
       <tr>
-        <td>{{$list->id}}</td>
-        <td>{{$list->name}}</td>
-        <td><a href='/static_json_php5/public/lists/edit/{{$list->id}}' class="btn btn-warning">Edit</a></td>
+        <td><?php echo e($list->id); ?></td>
+        <td><?php echo e($list->name); ?></td>
+        <td><a href='/static_json_php5/public/lists/edit/<?php echo e($list->id); ?>' class="btn btn-warning">Edit</a></td>
         <td>
-          <form action='/static_json_php5/public/lists/delete/{{$list->id}}' method="get">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <form action='/static_json_php5/public/lists/delete/<?php echo e($list->id); ?>' method="get">
+            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
             <input name="_method" type="hidden" value="DELETE">
             <button class="btn btn-danger" type="submit">Delete</button>
           </form>
 
-          <a href='/static_json_php5/public/lists/getjson/{{$list->id}}' class="btn btn-success">get json</a></td>
+          <a href='/static_json_php5/public/lists/getjson/<?php echo e($list->id); ?>' class="btn btn-success">get json</a></td>
 
         </td>
       </tr>
-      @endforeach
+      <?php endforeach; ?>
     </tbody>
   </table>
   </div>

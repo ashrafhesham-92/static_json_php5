@@ -13,4 +13,9 @@ class Module extends Model {
 		return $this->hasMany('App\ml_field', 'module_id');
 	}
 
+	public function lists()
+	{
+		return $this->hasMany('App\s_list', 'module_id');
+	}
+
 }
