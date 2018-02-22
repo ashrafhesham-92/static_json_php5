@@ -17,7 +17,7 @@
 
   </head>
   <body><a href='/static_json_php5/public/modules/view' class="btn btn-warning">Modules</a>
-    <a href='/static_json_php5/public/modules/create' class="btn btn-warning">Create</a>
+    <a href='/static_json_php5/public/modules/create' class="btn btn-warning">Create A Module</a>
     <a href='/static_json_php5/public/modules/validations' class="btn btn-warning">Validations</a>
     
 

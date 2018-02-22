@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
   </head>
   <body>
-    <a href='/static_json_php5/public/lists/view' class="btn btn-warning">Lists</a>
-    <a href='/static_json_php5/public/lists/create' class="btn btn-warning">Create</a>
+    <a href='/static_json_php5/public/modules/view' class="btn btn-warning">Modules</a>
+    <a href='/static_json_php5/public/modules/create' class="btn btn-warning">Create A Module</a>
     <a href='/static_json_php5/public/lists/actions' class="btn btn-warning">Actions</a>
     <div class="container">
       <h2>Edit A List</h2><br  />

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Edit Modules </title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
 
   </head>
   <body>
@@ -12,27 +12,27 @@
     <a href='/static_json_php5/public/modules/validations' class="btn btn-warning">Validations</a>
     <div class="container">
       <h2>Edit A Module</h2><br  />
-      @if ($errors->any())
+      <?php if($errors->any()): ?>
       <div class="alert alert-danger">
           <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
+              <?php foreach($errors->all() as $error): ?>
+                  <li><?php echo e($error); ?></li>
+              <?php endforeach; ?>
           </ul>
       </div><br />
-      @endif
+      <?php endif; ?>
 
       
 
-      <form method="get" action = "/static_json_php5/public/modules/update/{{$module->id}}">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+      <form method="get" action = "/static_json_php5/public/modules/update/<?php echo e($module->id); ?>">
+        <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 
         <input name="_method" type="hidden" value="PATCH">
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
             <label for="name">Name:</label>
-            <input type="text" class="form-control" name="module_name" value="{{$module->name}}">
+            <input type="text" class="form-control" name="module_name" value="<?php echo e($module->name); ?>">
           </div>
         </div>
        
@@ -44,9 +44,9 @@
 
             <select name = "validation">
                <option value = '' ></option>
-               @foreach($field_validations as $validation)
-                <option value = '{{$validation->id}}' > {{$validation->name}} </option>
-               @endforeach
+               <?php foreach($field_validations as $validation): ?>
+                <option value = '<?php echo e($validation->id); ?>' > <?php echo e($validation->name); ?> </option>
+               <?php endforeach; ?>
               </select>
 
           </div>
@@ -62,42 +62,43 @@
 
 
 
-      @foreach($fields as $field)
+      <?php foreach($fields as $field): ?>
       <tr>
-        <td><b>{{$field->name}}</b></td>
+        <td><b><?php echo e($field->name); ?></b></td>
         <td>
         
 
-        @foreach($field->validations as $validation)
+        <?php foreach($field->validations as $validation): ?>
         <td>(
-          {{$validation->name}}
+          <?php echo e($validation->name); ?>
 
-          <b><a href='/static_json_php5/public/modules/rmvval/{{$field->id}}/{{$validation->id}}'>x</a></b>
+
+          <b><a href='/static_json_php5/public/modules/rmvval/<?php echo e($field->id); ?>/<?php echo e($validation->id); ?>'>x</a></b>
 
         )</td>
-        @endforeach
+        <?php endforeach; ?>
         </td>
         <td>
-          <form method = 'post' action = '/static_json_php5/public/modules/addvalidation/{{$field->id}}'>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <form method = 'post' action = '/static_json_php5/public/modules/addvalidation/<?php echo e($field->id); ?>'>
+            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
             <select name = "validation">
-               @foreach($field_validations as $validation)
-                <option value = '{{$validation->id}}' > {{$validation->name}} </option>
-               @endforeach
+               <?php foreach($field_validations as $validation): ?>
+                <option value = '<?php echo e($validation->id); ?>' > <?php echo e($validation->name); ?> </option>
+               <?php endforeach; ?>
               </select>
               <button type="submit" class="btn btn-success">+</button>
           </form>
           
        
         </td>
-          <form action='/static_json_php5/public/modules/deletefield/{{$field->id}}' method="get">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <form action='/static_json_php5/public/modules/deletefield/<?php echo e($field->id); ?>' method="get">
+            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
             <input name="_method" type="hidden" value="DELETE">
             <button class="btn btn-danger" type="submit">Delete</button>
           </form>
         </td>
       </tr>
-      @endforeach
+      <?php endforeach; ?>
 
 
     </div>

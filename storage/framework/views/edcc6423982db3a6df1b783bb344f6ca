@@ -21,13 +21,13 @@
     <a href='/static_json_php5/public/lists/actions' class="btn btn-warning">Actions</a>
 
     <div class="container">
-      <h2>Create A List</h2><br />
+      <h2>Create A List For <?php echo e($module->name); ?> Module</h2><br />
       
       
-      <form method="post">
+      <form method="post" action ="/static_json_php5/public/lists/create">
 
            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
-
+           <input type="hidden" name="module_id" value="<?php echo e($module->id); ?>">
 
         <div class="row" >
           <div class="col-md-4"></div>

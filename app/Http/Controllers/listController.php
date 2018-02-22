@@ -33,10 +33,12 @@ class listController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($id)
 	{
-		//
-		return view('lists.create');
+		//wit
+
+		$module = \App\Module::find($id);
+		return view('lists.create', compact('module'));
 
 	}
 
@@ -77,6 +79,7 @@ class listController extends Controller {
 		//
 
 
+		$module = \App\Module::find($request->module_id);
 		
 	   $list_name = $request->name;
 	   
@@ -85,6 +88,8 @@ class listController extends Controller {
        $list->name = $list_name;
        $list->save();
  	   
+ 	   $module->lists()->save($list);
+
        return back()->with('success', 'list has been created');;
 	}
 
@@ -94,10 +99,11 @@ class listController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show()
+	public function show($id)
 	{
-		$lists = s_list::all();
-		return view('lists.view', compact('lists'));
+		$module = \App\Module::find($id);
+		$lists = $module->lists;
+		return view('lists.view', compact('lists'), compact('module'));
 	}
 
 	/**

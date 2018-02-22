@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <title>Actions Page</title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
   </head>
   <body>
     <a href='/static_json_php5/public/modules/view' class="btn btn-warning">Modules</a>
@@ -15,11 +15,11 @@
      
     <div class="container">
     <br />
-    @if (\Session::has('success'))
+    <?php if(\Session::has('success')): ?>
       <div class="alert alert-success">
-        <p>{{ \Session::get('success') }}</p>
+        <p><?php echo e(\Session::get('success')); ?></p>
       </div><br />
-     @endif
+     <?php endif; ?>
     <a href='/static_json_php5/public/modules/createvalidation' class="btn btn-warning">Add Validation</a>
     <table class="table table-striped">
     <thead>
@@ -30,19 +30,19 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($validations as $validation)
+      <?php foreach($validations as $validation): ?>
       <tr>
-        <td>{{$validation->id}}</td>
-        <td>{{$validation->name}}</td>
+        <td><?php echo e($validation->id); ?></td>
+        <td><?php echo e($validation->name); ?></td>
         <td>
-          <form action='/static_json_php5/public/modules/deletevalidation/{{$validation->id}}' method="get">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <form action='/static_json_php5/public/modules/deletevalidation/<?php echo e($validation->id); ?>' method="get">
+            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
             <input name="_method" type="hidden" value="DELETE">
             <button class="btn btn-danger" type="submit">Delete</button>
           </form>
         </td>
       </tr>
-      @endforeach
+      <?php endforeach; ?>
     </tbody>
   </table>
   </div>

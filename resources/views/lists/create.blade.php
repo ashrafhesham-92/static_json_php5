@@ -16,18 +16,21 @@
     </script>
 
   </head>
-  <body><a href='/static_json_php5/public/lists/view' class="btn btn-warning">Lists</a>
-    <a href='/static_json_php5/public/lists/create' class="btn btn-warning">Create</a>
+  <body>
+
+    <a href='/static_json_php5/public/modules/view' class="btn btn-warning">Modules</a>
+    <a href='/static_json_php5/public/modules/create' class="btn btn-warning">Create</a>
+
     <a href='/static_json_php5/public/lists/actions' class="btn btn-warning">Actions</a>
 
     <div class="container">
-      <h2>Create A List</h2><br />
+      <h2>Create A List For {{$module->name}} Module</h2><br />
       
       
-      <form method="post">
+      <form method="post" action ="/static_json_php5/public/lists/create">
 
            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+           <input type="hidden" name="module_id" value="{{ $module->id }}">
 
         <div class="row" >
           <div class="col-md-4"></div>
